@@ -1,0 +1,28 @@
+('/styles')
+'/scripts/main.js' - for your main JavaScript code.
+'/styles/style.css' - for custom styling.
+'/assets/rocket.png' - an example asset
+// Example function to call an AI API (using Fetch API)
+async function fetchAIResponse(question) {
+    const response = await fetch('AI_SERVICE_API_ENDPOINT', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            // Include necessary API keys or tokens
+        },
+        body: JSON.stringify({
+            query: question,
+            // Any other required fields
+        }),
+    });
+
+    const data = await response.json();
+    return data.answer; // Assuming the API responds with an object that has an answer key
+}
+
+// Example usage
+document.getElementById('askButton').addEventListener('click', async () => {
+    const question = document.getElementById('questionInput').value;
+    const answer = await fetchAIResponse(question);
+    document.getElementById('answerDisplay').innerText = answer;
+});
